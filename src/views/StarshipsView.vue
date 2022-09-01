@@ -15,7 +15,23 @@
 
 <script>
 export default {
-  
+  methods: {
+    moreShips() {
+      window.onscroll = () => {
+        // Check if the user has scrolled to the bottom of the window
+        let bottomOfWindow = Math.trunc(document.documentElement.scrollTop + window.innerHeight) === document.documentElement.offsetHeight;
+
+        // If it is true we make more API calls and concat the new arrays
+        if (bottomOfWindow) {
+          this.$store.dispatch("addMoreShips");
+        }
+      };
+    },
+  },
+
+  mounted() {
+    this.moreShips();
+  },
 };
 </script>
 

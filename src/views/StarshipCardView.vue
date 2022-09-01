@@ -24,7 +24,9 @@ export default {
       starship: null,
     };
   },
+
   mounted() {
+    // Fetch details of that particular ship
     fetch(this.id)
       .then((response) => response.json())
       .then((data) => {
