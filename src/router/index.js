@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import StarshipsView from "../views/StarshipsView.vue";
+import StarshipCardView from "../views/StarshipCardView.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/starships",
     name: "starships",
     component: StarshipsView,
+  },
+  {
+    path: "/starships/:id",
+    name: "starshipCard",
+    component: StarshipCardView,
   },
 ];
 

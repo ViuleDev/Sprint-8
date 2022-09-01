@@ -1,9 +1,13 @@
 <template>
-  <div class="starships-container">
+  <div class="starships-container" v-if="$store.state.starShipsList.length">
     <div class="starships-card" v-for="ship in $store.state.starShipsList" :key="ship">
       <h3>{{ ship.name }}</h3>
       <p>{{ ship.model }}</p>
     </div>
+  </div>
+
+  <div v-else>
+    <h2>Loading ships, thanks for your patience!</h2>
   </div>
 </template>
 
