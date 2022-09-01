@@ -25,11 +25,12 @@ export default {
     };
   },
   mounted() {
-    fetch("https://swapi.dev/api/starships/" + this.id)
+    fetch(this.id)
       .then((response) => response.json())
       .then((data) => {
         this.starship = data;
-      });
+      })
+      .catch((error) => console.log(error));
   },
 };
 </script>

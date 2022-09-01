@@ -1,7 +1,7 @@
 <template>
   <div class="starships-container" v-if="$store.state.starShipsList.length">
     <div class="starships-card" v-for="ship in $store.state.starShipsList" :key="ship">
-      <router-link :to="{ name: 'starshipCard', params: { id: ship.url.slice(-3) } }">
+      <router-link :to="{ name: 'starshipCard', params: { id: ship.url } }">
         <h3>{{ ship.name }}</h3>
         <p>{{ ship.model }}</p>
       </router-link>
@@ -15,10 +15,7 @@
 
 <script>
 export default {
-  // We call the action to populate the ship list
-  created() {
-    this.$store.dispatch("populateShipsList");
-  },
+  
 };
 </script>
 

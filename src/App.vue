@@ -9,6 +9,15 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  // We call the action to populate the ship list
+  created() {
+    this.$store.dispatch("populateShipsList");
+  },
+};
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
