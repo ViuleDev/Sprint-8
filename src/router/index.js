@@ -18,6 +18,7 @@ const routes = [
     path: "/starships/:id",
     name: "starshipCard",
     component: StarshipCardView,
+    props: true,
   },
 ];
 

@@ -1,8 +1,10 @@
 <template>
   <div class="starships-container" v-if="$store.state.starShipsList.length">
     <div class="starships-card" v-for="ship in $store.state.starShipsList" :key="ship">
-      <h3>{{ ship.name }}</h3>
-      <p>{{ ship.model }}</p>
+      <router-link :to="{ name: 'starshipCard', params: { id: ship.url.slice(-3) } }">
+        <h3>{{ ship.name }}</h3>
+        <p>{{ ship.model }}</p>
+      </router-link>
     </div>
   </div>
 
@@ -36,5 +38,9 @@ export default {
 .starships-card p {
   margin-bottom: 10px;
   color: #949e9e;
+}
+
+router-link a {
+  text-decoration: none;
 }
 </style>
