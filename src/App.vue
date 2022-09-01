@@ -1,7 +1,10 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link> |
-    <router-link :to="{ name: 'starships' }">Starships</router-link>
+    <img alt="Star Wars logo" src="./assets/SWlogo.png" />
+    <div class="links">
+      <router-link :to="{ name: 'home' }">Home</router-link>
+      <router-link :to="{ name: 'starships' }">Starships</router-link>
+    </div>
   </nav>
   <router-view />
 </template>
@@ -19,12 +22,27 @@ nav {
   padding: 30px;
 }
 
+nav .links {
+  display: flex;
+  justify-content: center;
+}
+
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: white;
+  display: block;
+  margin: 20px 10px;
+}
+
+nav img {
+  width: 200px;
+  display: inline-block;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #949e9e;
 }
 </style>
