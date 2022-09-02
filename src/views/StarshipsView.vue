@@ -38,7 +38,7 @@ export default {
 <style>
 .starships-container {
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 .starships-card {
   text-align: left;
@@ -51,6 +51,9 @@ export default {
 .starships-card p {
   margin-bottom: 10px;
   color: #949e9e;
+}
+.starships-card p {
+  font-size: 1.1rem;
 }
 
 router-link a {

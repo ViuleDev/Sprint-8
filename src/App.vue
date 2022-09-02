@@ -1,11 +1,4 @@
 <template>
-  <!-- <nav>
-    <img alt="Star Wars logo" src="./assets/SWlogo.png" />
-    <div class="links">
-      <router-link :to="{ name: 'home' }">Home</router-link>
-      <router-link :to="{ name: 'starships' }">Starships</router-link>
-    </div>
-  </nav> -->
   <Navbar />
   <router-view />
 </template>
@@ -29,6 +22,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-
 </style>
