@@ -1,4 +1,5 @@
 <template>
+  <Hero theme="rebel" />
   <div class="starships-container" v-if="$store.state.starShipsList.length">
     <div class="starships-card" v-for="ship in $store.state.starShipsList" :key="ship">
       <router-link :to="{ name: 'starshipCard', params: { id: ship.url } }">
@@ -14,7 +15,9 @@
 </template>
 
 <script>
+import Hero from "@/components/Hero.vue";
 export default {
+  components: { Hero },
   methods: {
     moreShips() {
       window.onscroll = () => {
