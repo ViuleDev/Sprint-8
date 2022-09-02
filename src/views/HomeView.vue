@@ -1,5 +1,6 @@
 <template>
   <Hero theme="empire" />
+  <Gaming class="game" />
   <div class="home">
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ea error praesentium, veritatis ut, dolorum vitae hic nesciunt eligendi corporis quos voluptatem! Incidunt esse quidem, praesentium obcaecati sint provident voluptas totam quibusdam animi, dolorem dolorum, voluptatibus veritatis repellendus deleniti ipsum tempora accusantium distinctio cum nulla tempore a? Itaque neque animi dolor atque odit mollitia officiis! Totam rem rerum dolore sed. Nemo fugiat, eligendi placeat
@@ -20,18 +21,21 @@
 // @ is an alias to /src
 import Hero from "@/components/Hero.vue";
 import Footer from "@/components/Footer.vue";
+import Gaming from "@/components/Gaming.vue";
 
 export default {
   name: "HomeView",
-  components: { Hero, Footer },
+  components: { Hero, Footer, Gaming },
 };
 </script>
 
 <style>
 .home {
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: left;
   padding: 1.5rem;
-  background: #131515;
+  background: #0a0b0b;
 }
 
 .home h1 {
@@ -41,5 +45,9 @@ export default {
 .home p {
   font-size: 1.2rem;
   line-height: 1.4;
+}
+
+.game {
+  margin: 1rem auto;
 }
 </style>

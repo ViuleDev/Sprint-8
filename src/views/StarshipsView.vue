@@ -8,16 +8,19 @@
       </router-link>
     </div>
   </div>
-
   <div v-else>
     <h2>Loading ships, thanks for your patience!</h2>
   </div>
+
+  <Footer v-if="$store.state.starShipsList.length === 36" />
 </template>
 
 <script>
 import Hero from "@/components/Hero.vue";
+import Footer from "@/components/Footer.vue";
+
 export default {
-  components: { Hero },
+  components: { Hero, Footer },
   methods: {
     moreShips() {
       window.onscroll = () => {
