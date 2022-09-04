@@ -1,6 +1,8 @@
 <template>
-  <Hero theme="empire" />
-  <Gaming class="game" />
+  <Hero theme="empire" quote="“In a dark place we find ourselves and a little more knowledge lights our way.”" author="Yoda, Star Wars Episode III: Revenge Of The Sith" />
+  <div class="game">
+    <Gaming />
+  </div>
   <div class="title">
     <h2>LATEST NEWS...</h2>
   </div>

@@ -9,7 +9,7 @@
     </div>
     <div class="copyright">
       <sup>Powered by</sup>
-      Guybrush Threepwood Solutions&#8482;
+      Threepwood Solutions&#8482;
     </div>
     <div class="links">
       <a href="#">About Star Wars</a> | <a href="#">Privacy Policy</a> | <a href="#">Help Desk</a> | <a href="#">FAQ</a> |
@@ -43,7 +43,7 @@ export default {};
 }
 
 .copyright sup {
-  color: steelblue;
+  color: #1267d5;
 }
 
 .links a {

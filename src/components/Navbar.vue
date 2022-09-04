@@ -13,6 +13,7 @@
   <nav>
     <div class="links">
       <router-link :to="{ name: 'home' }">Home</router-link>
+      <div class="line"></div>
       <router-link :to="{ name: 'starships' }">Starships</router-link>
     </div>
   </nav>
@@ -42,9 +43,15 @@ nav .links {
   justify-content: center;
 }
 
+nav .line {
+  height: 100%;
+  width: 10px;
+  background: #1267d5;
+}
+
 nav a {
-  border-right: 1px solid #949e9e;
-  border-left: 1px solid #949e9e;
+  /* border-right: 1px solid #949e9e; */
+  /* border-left: 1px solid #949e9e; */
   padding: 5px 10px;
   font-weight: 300;
   text-transform: uppercase;
@@ -59,7 +66,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #f4f5f5;
-  border-bottom: 2px solid #1267d5;
+  color: #1267d5;
+  font-weight: 600;
 }
 </style>

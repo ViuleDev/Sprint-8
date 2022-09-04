@@ -1,15 +1,15 @@
 <template>
   <div class="hero" :class="{ empire: theme === 'empire', rebel: theme === 'rebel' }">
     <div class="hero-header">
-      <h1>“In a dark place we find ourselves and a little more knowledge lights our way.”</h1>
-      <p>Yoda, Star Wars Episode III: Revenge Of The Sith</p>
+      <h1>{{ quote }}</h1>
+      <p>{{ author }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["theme"],
+  props: ["theme", "quote", "author"],
 };
 </script>
 
@@ -34,6 +34,11 @@ export default {
   color: white;
   font-size: 2.5rem;
   font-weight: 300;
+}
+
+.hero-header p {
+  text-align: left;
+  color: #1267d5;
 }
 
 .hero img {

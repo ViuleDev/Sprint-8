@@ -1,5 +1,5 @@
 <template>
-  <Hero theme="rebel" />
+  <Hero theme="rebel" quote="“I’m a Mandalorian. Weapons are part of my religion.”" author="Mando, The Mandalorian" />
   <div class="starships" v-if="starShipsList.length">
     <div class="starships-card" v-for="ship in starShipsList" :key="ship">
       <router-link :to="{ name: 'starshipCard', params: { id: ship.url } }">
@@ -59,6 +59,7 @@ export default {
   margin: 2rem 0;
   padding: 1.5rem;
   background: #131515;
+  border: 1px solid #844250;
 }
 
 .starships-card h3,
