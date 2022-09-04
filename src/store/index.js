@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
-const starshipsURL = "https://swapi.dev/api/starships/?page=1";
+const starshipsURL = "https://swapi.dev/api/starships/?page=";
 
 export default createStore({
   state: {
@@ -28,7 +28,7 @@ export default createStore({
     // Api call using the created() life cycle hook in App.vue
     async fetchShips({ commit }) {
       try {
-        const response = await axios.get("https://swapi.dev/api/starships/?page=" + this.state.pageList);
+        const response = await axios.get(starshipsURL + this.state.pageList);
         const data = await response.data.results;
         console.log({ data });
 
@@ -45,7 +45,7 @@ export default createStore({
         console.log(this.state.pageList);
       }
       try {
-        const response = await axios.get("https://swapi.dev/api/starships/?page=" + this.state.pageList);
+        const response = await axios.get(starshipsURL + this.state.pageList);
         const data = await response.data.results;
 
         // Sending the data to the mutations with a commit

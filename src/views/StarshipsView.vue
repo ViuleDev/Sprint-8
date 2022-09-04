@@ -1,6 +1,6 @@
 <template>
   <Hero theme="rebel" />
-  <div class="starships-container" v-if="starShipsList.length">
+  <div class="starships" v-if="starShipsList.length">
     <div class="starships-card" v-for="ship in starShipsList" :key="ship">
       <router-link :to="{ name: 'starshipCard', params: { id: ship.url } }">
         <h3>{{ ship.name }}</h3>
@@ -49,12 +49,13 @@ export default {
 </script>
 
 <style>
-.starships-container {
+.starships {
   margin: 0 auto;
   max-width: 1200px;
 }
 .starships-card {
   text-align: left;
+  border-radius: 5px;
   margin: 2rem 0;
   padding: 1.5rem;
   background: #131515;

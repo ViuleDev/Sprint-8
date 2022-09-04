@@ -1,6 +1,9 @@
 <template>
   <Hero theme="empire" />
   <Gaming class="game" />
+  <div class="title">
+    <h2>LATEST NEWS...</h2>
+  </div>
   <div class="home">
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ea error praesentium, veritatis ut, dolorum vitae hic nesciunt eligendi corporis quos voluptatem! Incidunt esse quidem, praesentium obcaecati sint provident voluptas totam quibusdam animi, dolorem dolorum, voluptatibus veritatis repellendus deleniti ipsum tempora accusantium distinctio cum nulla tempore a? Itaque neque animi dolor atque odit mollitia officiis! Totam rem rerum dolore sed. Nemo fugiat, eligendi placeat

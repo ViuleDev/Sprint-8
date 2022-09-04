@@ -26,7 +26,7 @@ export default {};
 .footer {
   padding: 3rem;
   background: url("../assets/footerbg.png") center no-repeat;
-  background-size: 15%;
+  background-size: 10%;
 }
 
 .footer div {

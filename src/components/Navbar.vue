@@ -33,8 +33,8 @@
   margin-left: 50px;
 }
 nav {
-  border-bottom: 0.5px solid #949e9e;
-  border-top: 0.5px solid #949e9e;
+  border-bottom: 1px solid #949e9e;
+  border-top: 1px solid #949e9e;
 }
 
 nav .links {
