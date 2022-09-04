@@ -1,7 +1,7 @@
 <template>
   <Hero theme="rebel" />
-  <div class="starships-container" v-if="$store.state.starShipsList.length">
-    <div class="starships-card" v-for="ship in $store.state.starShipsList" :key="ship">
+  <div class="starships-container" v-if="starShipsList.length">
+    <div class="starships-card" v-for="ship in starShipsList" :key="ship">
       <router-link :to="{ name: 'starshipCard', params: { id: ship.url } }">
         <h3>{{ ship.name }}</h3>
         <p>{{ ship.model }}</p>
@@ -12,16 +12,19 @@
     <h2>Loading ships, thanks for your patience!</h2>
   </div>
 
-  <Footer v-if="$store.state.starShipsList.length === 36" />
+  <Footer v-if="starShipsList.length === 36" />
 </template>
 
 <script>
 import Hero from "@/components/Hero.vue";
 import Footer from "@/components/Footer.vue";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: { Hero, Footer },
   methods: {
+    ...mapActions(["fetchMoreShips"]),
+
     moreShips() {
       window.onscroll = () => {
         // Check if the user has scrolled to the bottom of the window
@@ -29,10 +32,14 @@ export default {
 
         // If it is true we make more API calls and concat the new arrays
         if (bottomOfWindow) {
-          this.$store.dispatch("addMoreShips");
+          this.fetchMoreShips();
         }
       };
     },
+  },
+
+  computed: {
+    ...mapState(["starShipsList"]),
   },
 
   mounted() {

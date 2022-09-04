@@ -5,12 +5,17 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: { Navbar },
+
+  methods: {
+    ...mapActions(["fetchShips"]),
+  },
   // We call the action to populate the ship list
   created() {
-    this.$store.dispatch("populateShipsList");
+    this.fetchShips();
   },
 };
 </script>

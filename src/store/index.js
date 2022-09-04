@@ -26,7 +26,7 @@ export default createStore({
   },
   actions: {
     // Api call using the created() life cycle hook in App.vue
-    async populateShipsList({ commit }) {
+    async fetchShips({ commit }) {
       try {
         const response = await axios.get("https://swapi.dev/api/starships/?page=" + this.state.pageList);
         const data = await response.data.results;
@@ -39,7 +39,7 @@ export default createStore({
       }
     },
 
-    async addMoreShips({ commit }) {
+    async fetchMoreShips({ commit }) {
       if (this.state.pageList < 4) {
         this.state.pageList++;
         console.log(this.state.pageList);
