@@ -6,8 +6,8 @@
     </div>
 
     <div class="login-links">
-      <a href="#" @click="toggleModal"> LOG IN </a>//
-      <a href="#" @click="toggleModal"> SIGN UP </a>
+      <a href="#"> LOG IN </a>//
+      <a href="#" @click="toggleSignupModal"> SIGN UP </a>
     </div>
   </div>
   <nav>
@@ -17,25 +17,25 @@
       <router-link :to="{ name: 'starships' }">Starships</router-link>
     </div>
   </nav>
-  <div v-if="showModal">
-    <LoginModal />
+  <div v-if="showSignupModal">
+    <SignupModal />
   </div>
 </template>
 
 <script>
-import LoginModal from "@/components/LoginModal.vue";
+import SignupModal from "@/components/SignupModal.vue";
 
 import { mapState, mapMutations } from "vuex";
 
 export default {
-  components: { LoginModal },
+  components: { SignupModal },
 
   methods: {
-    ...mapMutations(["toggleModal"]),
+    ...mapMutations(["toggleSignupModal"]),
   },
 
   computed: {
-    ...mapState(["showModal"]),
+    ...mapState(["showSignupModal"]),
   },
 };
 </script>

@@ -7,7 +7,8 @@ export default createStore({
   state: {
     starShipsList: [],
     pageList: 1,
-    showModal: false,
+    showSignupModal: false,
+    registeredUsers: [],
   },
   getters: {},
   mutations: {
@@ -25,9 +26,14 @@ export default createStore({
     },
 
     // Toggle Signup Modal
+    toggleSignupModal(state) {
+      state.showSignupModal = !state.showSignupModal;
+    },
 
-    toggleModal(state) {
-      state.showModal = !state.showModal;
+    // Create User
+    addUser(state, payload) {
+      state.registeredUsers.push(payload);
+      console.log(state.registeredUsers);
     },
   },
   actions: {
