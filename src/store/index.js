@@ -10,6 +10,7 @@ export default createStore({
     showSignupModal: false,
     showLoginModal: false,
     registeredUsers: [],
+    loggedIn: false,
   },
   getters: {},
   mutations: {
@@ -55,7 +56,7 @@ export default createStore({
       console.log(state.registeredUsers);
     },
 
-    // Check for Existing User by matching Email Address
+    // Check for Existing User by matching Email & Password
   },
   actions: {
     // Api call using the created() life cycle hook in App.vue
