@@ -1,0 +1,14 @@
+Color Codes
+
+primary dark color: #0a0b0b
+
+secondary dark color : #131515
+
+primary text gray : #949e9e 
+
+blue: #1267d5
+
+red shade: #844250
+
+yellow: #ffeb00
+

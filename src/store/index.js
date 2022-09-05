@@ -7,6 +7,7 @@ export default createStore({
   state: {
     starShipsList: [],
     pageList: 1,
+    showModal: false,
   },
   getters: {},
   mutations: {
@@ -20,8 +21,13 @@ export default createStore({
       if (state.starShipsList.length < 36) {
         state.starShipsList = state.starShipsList.concat(moreShips);
       }
+      // console.log(state.starShipsList.length);
+    },
 
-      console.log(state.starShipsList.length);
+    // Toggle Signup Modal
+
+    toggleModal(state) {
+      state.showModal = !state.showModal;
     },
   },
   actions: {

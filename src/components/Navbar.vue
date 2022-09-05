@@ -6,8 +6,8 @@
     </div>
 
     <div class="login-links">
-      <a href="#"> LOG IN </a>//
-      <a href="#"> SIGN UP </a>
+      <a href="#" @click="toggleModal"> LOG IN </a>//
+      <a href="#" @click="toggleModal"> SIGN UP </a>
     </div>
   </div>
   <nav>
@@ -17,7 +17,28 @@
       <router-link :to="{ name: 'starships' }">Starships</router-link>
     </div>
   </nav>
+  <div v-if="showModal">
+    <LoginModal />
+  </div>
 </template>
+
+<script>
+import LoginModal from "@/components/LoginModal.vue";
+
+import { mapState, mapMutations } from "vuex";
+
+export default {
+  components: { LoginModal },
+
+  methods: {
+    ...mapMutations(["toggleModal"]),
+  },
+
+  computed: {
+    ...mapState(["showModal"]),
+  },
+};
+</script>
 
 <style>
 .login-bar {
@@ -50,8 +71,6 @@ nav .line {
 }
 
 nav a {
-  /* border-right: 1px solid #949e9e; */
-  /* border-left: 1px solid #949e9e; */
   padding: 5px 10px;
   font-weight: 300;
   text-transform: uppercase;

@@ -40,7 +40,7 @@ export default {
   margin: 0 auto;
   text-align: left;
   padding: 1.5rem;
-  background: #0a0b0b;
+  /* background: #0a0b0b; */
 }
 
 .home h1 {
