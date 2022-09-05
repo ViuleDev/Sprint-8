@@ -57,6 +57,25 @@ export default createStore({
     },
 
     // Check for Existing User by matching Email & Password
+
+    grantAccess(state, payload) {
+      console.log(payload);
+      if (state.registeredUsers.length) {
+        state.registeredUsers.forEach((user) => {
+          if (user.email === payload.email && user.password === payload.password) {
+            state.loggedIn = true;
+            alert("You have logged in succesfully!");
+            return;
+          } else {
+            state.loggedIn = false;
+            alert("Wrong email and/or password!");
+          }
+        });
+      } else {
+        state.loggedIn = false;
+        alert("No user registered yet!");
+      }
+    },
   },
   actions: {
     // Api call using the created() life cycle hook in App.vue

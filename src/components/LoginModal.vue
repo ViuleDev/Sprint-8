@@ -30,7 +30,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["toggleLoginModal"]),
+    ...mapMutations(["toggleLoginModal", "grantAccess"]),
 
     validateInputs() {
       // Email Validation
@@ -56,8 +56,8 @@ export default {
         this.$refs.password.style.outline = "2px solid #1267d5";
       }
 
-      if(emailValidation && passwordValidation){
-        
+      if (emailValidation && passwordValidation) {
+        this.grantAccess({ email: this.email, password: this.password });
       }
     },
   },
