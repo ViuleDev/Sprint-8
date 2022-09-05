@@ -45,7 +45,7 @@ export default {
 
     validateForm() {
       // Name Validation
-      let namePattern = /^[A-Za-z]+$/;
+      let namePattern = /^[a-z ,.'-]+$/i;
       let nameValidation = namePattern.test(this.fName);
       if (!nameValidation) {
         this.$refs.name.style.outline = "2px solid crimson";
@@ -71,7 +71,6 @@ export default {
       }
 
       // Password Validation
-
       /* 
       - at least 8 characters
       - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
@@ -166,6 +165,7 @@ export default {
 
 .form button {
   margin: 1rem auto;
+  width: 300px;
   display: block;
   border: none;
   outline: none;

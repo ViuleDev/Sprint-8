@@ -8,6 +8,7 @@ export default createStore({
     starShipsList: [],
     pageList: 1,
     showSignupModal: false,
+    showLoginModal: false,
     registeredUsers: [],
   },
   getters: {},
@@ -29,12 +30,32 @@ export default createStore({
     toggleSignupModal(state) {
       state.showSignupModal = !state.showSignupModal;
     },
+    // Toggle Login Modal
+    toggleLoginModal(state) {
+      state.showLoginModal = !state.showLoginModal;
+    },
 
-    // Create User
+    // Create New User
     addUser(state, payload) {
-      state.registeredUsers.push(payload);
+      console.log(payload.email);
+
+      // Check to see if the user is already in our database
+      if (state.registeredUsers.length === 0) {
+        state.registeredUsers.push(payload);
+      } else {
+        // Create an array with only the emails from the registered users
+        // If the email passed with the payload is not present it means that we can create a new user
+        const emailOnly = state.registeredUsers.map((user) => user.email.toUpperCase());
+        if (!emailOnly.includes(payload.email.toUpperCase())) {
+          state.registeredUsers.push(payload);
+        }
+        console.log(emailOnly);
+      }
+
       console.log(state.registeredUsers);
     },
+
+    // Check for Existing User by matching Email Address
   },
   actions: {
     // Api call using the created() life cycle hook in App.vue
