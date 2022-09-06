@@ -12,7 +12,7 @@
           <input type="text" placeholder="First Name" v-model="fName" ref="name" />
           <input type="text" placeholder="Last Name" v-model="lName" ref="lastName" />
           <input type="text" placeholder="Email Address" v-model="email" ref="email" />
-          <input type="text" placeholder="Password" v-model="password" ref="password" />
+          <input type="password" placeholder="Password" v-model="password" ref="password" />
 
           <div class="terms">
             <input type="checkbox" v-model="terms" ref="terms" />
@@ -76,7 +76,7 @@ export default {
       - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
       - Can contain special characters
       */
-      let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+      let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/gm;
       let passwordValidation = passwordPattern.test(this.password);
       if (!passwordValidation) {
         this.$refs.password.style.outline = "2px solid crimson";
@@ -100,7 +100,7 @@ export default {
         this.password = "";
         this.terms = false;
       } else {
-        alert("There is some problem");
+        alert("Password must be at least 4 characters, 1 uppercase letter, 1 lowercase letter, and 1 number");
       }
     },
   },
@@ -141,7 +141,8 @@ export default {
   margin: 2rem auto;
 }
 
-.form input[type="text"] {
+.form input[type="text"],
+.form input[type="password"] {
   border: none;
   padding: 10px;
   border-radius: 5px;

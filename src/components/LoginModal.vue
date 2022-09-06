@@ -5,12 +5,12 @@
         <img src="../assets/SWlogoYellow.png" alt="" />
       </div>
 
-      <h2>ENTER YOUR PASSWORD</h2>
+      <h2>ENTER YOUR DETAILS</h2>
 
       <div class="form-container">
         <form class="form" @submit.prevent="validateInputs">
           <input type="text" placeholder="Email Address" v-model="email" ref="email" />
-          <input type="text" placeholder="Password" v-model="password" ref="password" />
+          <input type="password" placeholder="Password" v-model="password" ref="password" />
           <button>Continue</button>
         </form>
       </div>

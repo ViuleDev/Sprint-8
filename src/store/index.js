@@ -53,6 +53,8 @@ export default createStore({
           state.registeredUsers.push(payload);
           state.showSignupModal = false;
           console.log("User Registered succesfully");
+        } else {
+          console.log("User already registered");
         }
       }
 
