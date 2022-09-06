@@ -1,12 +1,21 @@
 <template>
   <div class="login-bar">
-    <div class="fake-div" style="visibility: hidden">LOG IN // SIGN UP</div>
+    <div class="fake-div" style="visibility: hidden">
+      <a href="#">
+        <span v-if="!loggedIn"> LOG IN </span>
+        <span v-else> LOG OUT </span> </a
+      >/
+      <a href="#"> SIGN UP </a>
+    </div>
     <div class="logo">
       <img alt="Star Wars logo" src="../assets/SWlogo.png" />
     </div>
 
     <div class="login-links">
-      <a href="#" @click="toggleLoginModal"> LOG IN </a>//
+      <a href="#">
+        <span v-if="!loggedIn" @click="toggleLoginModal"> LOG IN </span>
+        <span v-else @click="logOut"> LOG OUT </span> </a
+      >/
       <a href="#" @click="toggleSignupModal"> SIGN UP </a>
     </div>
   </div>
@@ -35,11 +44,11 @@ export default {
   components: { SignupModal, LoginModal },
 
   methods: {
-    ...mapMutations(["toggleSignupModal", "toggleLoginModal"]),
+    ...mapMutations(["toggleSignupModal", "toggleLoginModal", "logOut"]),
   },
 
   computed: {
-    ...mapState(["showSignupModal", "showLoginModal"]),
+    ...mapState(["showSignupModal", "showLoginModal", "loggedIn"]),
   },
 };
 </script>
@@ -54,6 +63,7 @@ export default {
   margin-left: auto;
   margin-right: 50px;
 }
+
 .fake-div {
   margin-right: auto;
   margin-left: 50px;

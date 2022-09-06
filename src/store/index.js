@@ -12,7 +12,9 @@ export default createStore({
     registeredUsers: [],
     loggedIn: false,
   },
+
   getters: {},
+
   mutations: {
     // Populate starShipsList for the first time
     populateShipsList(state, shipList) {
@@ -38,43 +40,57 @@ export default createStore({
 
     // Create New User
     addUser(state, payload) {
-      console.log(payload.email);
-
       // Check to see if the user is already in our database
       if (state.registeredUsers.length === 0) {
         state.registeredUsers.push(payload);
+        state.showSignupModal = false;
+        console.log("User Registered succesfully");
       } else {
         // Create an array with only the emails from the registered users
         // If the email passed with the payload is not present it means that we can create a new user
         const emailOnly = state.registeredUsers.map((user) => user.email.toUpperCase());
         if (!emailOnly.includes(payload.email.toUpperCase())) {
           state.registeredUsers.push(payload);
+          state.showSignupModal = false;
+          console.log("User Registered succesfully");
         }
-        console.log(emailOnly);
       }
 
-      console.log(state.registeredUsers);
+      console.table(state.registeredUsers);
     },
 
     // Check for Existing User by matching Email & Password
 
     grantAccess(state, payload) {
-      console.log(payload);
+      let isLoggedIn = false;
+
+      // We only do this check if there are already registered users.
       if (state.registeredUsers.length) {
-        state.registeredUsers.forEach((user) => {
+        state.registeredUsers.some((user) => {
           if (user.email === payload.email && user.password === payload.password) {
-            state.loggedIn = true;
-            alert("You have logged in succesfully!");
-            return;
+            return (isLoggedIn = true);
           } else {
-            state.loggedIn = false;
-            alert("Wrong email and/or password!");
+            isLoggedIn = false;
           }
         });
+
+        if (isLoggedIn) {
+          state.loggedIn = true;
+          state.showLoginModal = false;
+          console.log("Succesfully logged in!");
+        } else {
+          state.loggedIn = false;
+          console.log("Invalid username or password!");
+        }
       } else {
         state.loggedIn = false;
         alert("No user registered yet!");
       }
+    },
+
+    logOut(state) {
+      state.loggedIn = false;
+      console.log("Logged out!");
     },
   },
   actions: {
