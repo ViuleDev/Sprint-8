@@ -14,14 +14,14 @@ const routes = [
     path: "/starships",
     name: "starships",
     component: StarshipsView,
-    beforeEnter: (to, from, next) => {
-      if (store.state.loggedIn === false) {
-        next(false);
-        store.commit("toggleLoginModal");
-      } else {
-        next();
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   if (store.state.loggedIn === false) {
+    //     next(false);
+    //     store.commit("toggleLoginModal");
+    //   } else {
+    //     next();
+    //   }
+    // },
   },
   {
     path: "/starships/:id",
