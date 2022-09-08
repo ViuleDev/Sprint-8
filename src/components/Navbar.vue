@@ -1,6 +1,7 @@
 <template>
   <div class="login-bar">
     <div class="fake-div" style="visibility: hidden">
+      <a href="#" class="current-user" v-if="loggedIn">{{ currentUser }}</a>
       <a href="#">
         <span v-if="!loggedIn"> LOG IN </span>
         <span v-else> LOG OUT </span> </a
@@ -12,6 +13,7 @@
     </div>
 
     <div class="login-links">
+      <a href="#" class="current-user" v-if="loggedIn">{{ currentUser }}</a>
       <a href="#">
         <span v-if="!loggedIn" @click="toggleLoginModal"> LOG IN </span>
         <span v-else @click="logOut"> LOG OUT </span> </a
@@ -48,7 +50,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["showSignupModal", "showLoginModal", "loggedIn"]),
+    ...mapState(["showSignupModal", "showLoginModal", "loggedIn", "currentUser"]),
   },
 };
 </script>
@@ -101,5 +103,12 @@ nav a {
 nav a.router-link-exact-active {
   color: #1267d5;
   font-weight: 600;
+}
+
+.current-user {
+  padding: 7px;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  font-weight: 500;
 }
 </style>

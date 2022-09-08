@@ -48,7 +48,7 @@ export default {
       - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
       - Can contain special characters
       */
-      let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+      let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/gm;
       let passwordValidation = passwordPattern.test(this.password);
       if (!passwordValidation) {
         this.$refs.password.style.outline = "2px solid crimson";

@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
+import router from "../router/index";
 
 const starshipsURL = "https://swapi.dev/api/starships/?page=";
 
@@ -11,6 +12,7 @@ export default createStore({
     showLoginModal: false,
     registeredUsers: [],
     loggedIn: false,
+    currentUser: "",
   },
 
   getters: {},
@@ -77,6 +79,8 @@ export default createStore({
         });
 
         if (isLoggedIn) {
+          console.log("payload email is", payload.email);
+          state.currentUser = payload.email;
           state.loggedIn = true;
           state.showLoginModal = false;
           console.log("Succesfully logged in!");
@@ -92,6 +96,11 @@ export default createStore({
 
     logOut(state) {
       state.loggedIn = false;
+      state.currentUser = "";
+
+      // Redirects to the Home page when we log out
+      router.push({ name: "home" });
+
       console.log("Logged out!");
     },
   },
