@@ -25,7 +25,7 @@ export default {
   background: url("../assets/bg1.jpg") center/cover;
 }
 .rebel {
-  background: url("../assets/bg2.jpg") center/cover;
+  background: url("../assets/bg3.jpg") center/cover;
 }
 
 .hero-header h1 {

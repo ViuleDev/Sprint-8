@@ -7,7 +7,7 @@ const starshipsURL = "https://swapi.dev/api/starships/?page=";
 export default createStore({
   state: {
     starShipsList: [],
-    pageList: 1,
+    pageList: 2,
     showSignupModal: false,
     showLoginModal: false,
     registeredUsers: [],
@@ -19,15 +19,17 @@ export default createStore({
 
   mutations: {
     // Populate starShipsList for the first time
-    populateShipsList(state, shipList) {
-      state.starShipsList = shipList;
+    fetchShips(state, shipsData) {
+      state.starShipsList = shipsData;
     },
 
     // Add more ships
-    addMoreShips(state, moreShips) {
-      if (state.starShipsList.length < 36) {
-        state.starShipsList = state.starShipsList.concat(moreShips);
+    fetchMoreShips(state, moreShips) {
+      if (state.starShipsList.length < moreShips.count && state.pageList <= 4) {
+        state.pageList++;
+        state.starShipsList = state.starShipsList.concat(moreShips.results);
       }
+      console.log(state.starShipsList);
       // console.log(state.starShipsList.length);
     },
 
@@ -64,8 +66,7 @@ export default createStore({
     },
 
     // Check for Existing User by matching Email & Password
-
-    grantAccess(state, payload) {
+    logIn(state, payload) {
       let isLoggedIn = false;
 
       // We only do this check if there are already registered users.
@@ -108,32 +109,33 @@ export default createStore({
     // Api call using the created() life cycle hook in App.vue
     async fetchShips({ commit }) {
       try {
-        const response = await axios.get(starshipsURL + this.state.pageList);
+        const response = await axios.get(starshipsURL + 1);
         const data = await response.data.results;
         console.log({ data });
 
         // Sending the data to the mutations with a commit
-        commit("populateShipsList", data);
+        commit("fetchShips", data);
       } catch (error) {
         console.log(error);
       }
     },
 
     async fetchMoreShips({ commit }) {
-      if (this.state.pageList < 4) {
-        this.state.pageList++;
-        console.log(this.state.pageList);
-      }
+      // if (this.state.pageList < 4) {
+      //   this.state.pageList++;
+      console.log("page list value from the action", this.state.pageList);
+      // }
       try {
-        const response = await axios.get(starshipsURL + this.state.pageList);
-        const data = await response.data.results;
+        if (this.state.pageList <= 4) {
+          const response = await axios.get(starshipsURL + this.state.pageList);
+          const data = await response.data;
 
-        // Sending the data to the mutations with a commit
-        commit("addMoreShips", data);
+          // Sending the data to the mutations with a commit
+          commit("fetchMoreShips", data);
+        }
       } catch (error) {
         console.log(error);
       }
     },
   },
-  modules: {},
 });
