@@ -13,6 +13,8 @@ export default createStore({
     registeredUsers: [],
     loggedIn: false,
     currentUser: "",
+    starship: null,
+    pilotsArray: null,
   },
 
   getters: {},
@@ -42,6 +44,13 @@ export default createStore({
       state.showLoginModal = !state.showLoginModal;
     },
 
+    fetchStarship(state, starshipData) {
+      state.starship = starshipData;
+    },
+
+    setPilots(state, pilotsData) {
+      state.pilotsArray = pilotsData;
+    },
     // Create New User
     addUser(state, payload) {
       // Check to see if the user is already in our database
@@ -121,10 +130,6 @@ export default createStore({
     },
 
     async fetchMoreShips({ commit }) {
-      // if (this.state.pageList < 4) {
-      //   this.state.pageList++;
-      console.log("page list value from the action", this.state.pageList);
-      // }
       try {
         if (this.state.pageList <= 4) {
           const response = await axios.get(starshipsURL + this.state.pageList);
@@ -133,6 +138,19 @@ export default createStore({
           // Sending the data to the mutations with a commit
           commit("fetchMoreShips", data);
         }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async fetchStarshipData({ commit }, URL) {
+      try {
+        const response = await axios.get(URL);
+        const starshipData = await response.data;
+        const pilotsData = await response.data.pilots;
+
+        commit("fetchStarship", starshipData);
+        commit("setPilots", pilotsData);
       } catch (error) {
         console.log(error);
       }

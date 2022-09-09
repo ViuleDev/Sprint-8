@@ -27,24 +27,23 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Pilots from "@/components/Pilots.vue";
+
+import { mapActions, mapState } from "vuex";
+
 export default {
   components: { Footer, Pilots },
   props: ["id"],
-  data() {
-    return {
-      starship: null,
-      pilotsArray: null,
-    };
+
+  computed: {
+    ...mapState(["starship", "pilotsArray"]),
   },
+
+  methods: {
+    ...mapActions(["fetchStarshipData"]),
+  },
+
   mounted() {
-    // Fetch details of that particular ship
-    fetch(this.id)
-      .then((response) => response.json())
-      .then((data) => {
-        this.starship = data;
-        this.pilotsArray = data.pilots;
-      })
-      .catch((error) => console.log(error));
+    this.fetchStarshipData(this.id);
   },
 };
 </script>

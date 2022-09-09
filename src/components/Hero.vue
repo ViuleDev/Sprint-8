@@ -25,7 +25,7 @@ export default {
   background: url("../assets/bg1.jpg") center/cover;
 }
 .rebel {
-  background: url("../assets/bg3.jpg") center/cover;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url("../assets/bg3.jpg") center/cover;
 }
 
 .hero-header h1 {

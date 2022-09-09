@@ -32,7 +32,6 @@ export default {
 
         // If it is true we make more API calls and concat the new arrays
         if (bottomOfWindow) {
-          console.log("callin api on scroll");
           this.fetchMoreShips();
         }
       };
