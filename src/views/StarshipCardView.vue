@@ -12,7 +12,7 @@
       <p><span class="categories">Crew: </span>{{ starship.crew }} <fa class="fa-icon" :icon="['fas', 'fa-user-astronaut']" /></p>
 
       <div v-if="pilotsArray.length">
-        <Pilots :pilots="pilotsArray" />
+        <Pilots :pilotsArray="pilotsArray" />
       </div>
     </div>
   </div>

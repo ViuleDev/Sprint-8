@@ -15,8 +15,7 @@
 
 <script>
 export default {
-  props: ["pilots"],
-
+  props: ["pilotsArray"],
   data() {
     return {
       pilotsData: [],
@@ -24,7 +23,7 @@ export default {
   },
 
   mounted() {
-    this.pilots.forEach((pilotURL) => {
+    this.pilotsArray.forEach((pilotURL) => {
       fetch(pilotURL)
         .then((res) => res.json())
         .then((data) => this.pilotsData.push(data));

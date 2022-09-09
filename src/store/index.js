@@ -49,8 +49,10 @@ export default createStore({
     },
 
     setPilots(state, pilotsData) {
+      // state.pilotsArray = [];
       state.pilotsArray = pilotsData;
     },
+
     // Create New User
     addUser(state, payload) {
       // Check to see if the user is already in our database
