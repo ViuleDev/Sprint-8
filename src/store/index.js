@@ -7,7 +7,7 @@ const starshipsURL = "https://swapi.dev/api/starships/?page=";
 export default createStore({
   state: {
     starShipsList: [],
-    pageList: 2,
+    pageList: 1,
     showSignupModal: false,
     showLoginModal: false,
     registeredUsers: [],
@@ -27,8 +27,7 @@ export default createStore({
 
     // Add more ships
     fetchMoreShips(state, moreShips) {
-      if (state.starShipsList.length < moreShips.count && state.pageList <= 4) {
-        state.pageList++;
+      if (state.starShipsList.length < moreShips.count) {
         state.starShipsList = state.starShipsList.concat(moreShips.results);
       }
       console.log(state.starShipsList);
@@ -46,6 +45,12 @@ export default createStore({
 
     fetchStarship(state, starshipData) {
       state.starship = starshipData;
+    },
+
+    turnPage(state) {
+      if (state.pageList < 5) {
+        state.pageList++;
+      }
     },
 
     setPilots(state, pilotsData) {
@@ -132,16 +137,15 @@ export default createStore({
     },
 
     async fetchMoreShips({ commit }) {
-      try {
-        if (this.state.pageList <= 4) {
-          const response = await axios.get(starshipsURL + this.state.pageList);
-          const data = await response.data;
+      commit("turnPage");
+      if (this.state.pageList > 4) {
+        return;
+      } else {
+        const response = await axios.get(starshipsURL + this.state.pageList);
+        const data = await response.data;
 
-          // Sending the data to the mutations with a commit
-          commit("fetchMoreShips", data);
-        }
-      } catch (error) {
-        console.log(error);
+        // Sending the data to the mutations with a commit
+        commit("fetchMoreShips", data);
       }
     },
 
