@@ -1,14 +1,16 @@
 <template>
-  <h1>PILOTS</h1>
-  <div v-if="pilotsData">
-    <div v-for="pilot in pilotsData" :key="pilot.name">
-      <p class="pilot-name">{{ pilot.name }}</p>
-      <ul class="ul">
-        <li><span class="text-red">Height: </span>{{ pilot.height }}cm</li>
-        <li><span class="text-red">Weight: </span>{{ pilot.mass }}kg</li>
-        <li><span class="text-red">Hair color: </span>{{ pilot.hair_color }}</li>
-        <li><span class="text-red">Birth Year: </span>{{ pilot.birth_year }}</li>
-      </ul>
+  <div v-if="pilotsData.length">
+    <h1>PILOTS</h1>
+    <div v-if="pilotsData">
+      <div v-for="pilot in pilotsData" :key="pilot.name">
+        <p class="pilot-name">{{ pilot.name }}</p>
+        <ul class="ul">
+          <li><span class="text-red">Height: </span>{{ pilot.height }}cm</li>
+          <li><span class="text-red">Weight: </span>{{ pilot.mass }}kg</li>
+          <li><span class="text-red">Hair color: </span>{{ pilot.hair_color }}</li>
+          <li><span class="text-red">Birth Year: </span>{{ pilot.birth_year }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +25,7 @@ export default {
   },
 
   mounted() {
+    this.pilotsData = [];
     this.pilotsArray.forEach((pilotURL) => {
       fetch(pilotURL)
         .then((res) => res.json())

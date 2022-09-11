@@ -10,9 +10,13 @@
       <div class="form-container">
         <form class="form" @submit.prevent="validateForm">
           <input type="text" placeholder="First Name" v-model="fName" ref="name" />
+          <p class="error">{{ fNameError }}</p>
           <input type="text" placeholder="Last Name" v-model="lName" ref="lastName" />
+          <p class="error">{{ lNameError }}</p>
           <input type="text" placeholder="Email Address" v-model="email" ref="email" />
+          <p class="error">{{ emailError }}</p>
           <input type="password" placeholder="Password" v-model="password" ref="password" />
+          <p class="error">{{ passwordError }}</p>
 
           <div class="terms">
             <input type="checkbox" v-model="terms" ref="terms" />
@@ -33,9 +37,13 @@ export default {
   data() {
     return {
       fName: "",
+      fNameError: "",
       lName: "",
+      lNameError: "",
       email: "",
+      emailError: "",
       password: "",
+      passwordError: "",
       terms: false,
     };
   },
@@ -49,16 +57,20 @@ export default {
       let nameValidation = namePattern.test(this.fName);
       if (!nameValidation) {
         this.$refs.name.style.outline = "2px solid crimson";
+        this.fNameError = "Type your first name.";
       } else {
         this.$refs.name.style.outline = "2px solid #1267d5";
+        this.fNameError = "";
       }
 
       // Last Name Validation
       let lNameValidation = namePattern.test(this.lName);
       if (!lNameValidation) {
         this.$refs.lastName.style.outline = "2px solid crimson";
+        this.lNameError = "Type your last name.";
       } else {
         this.$refs.lastName.style.outline = "2px solid #1267d5";
+        this.lNameError = "";
       }
 
       // Email Validation
@@ -66,12 +78,14 @@ export default {
       let emailValidation = emailPattern.test(this.email);
       if (!emailValidation) {
         this.$refs.email.style.outline = "2px solid crimson";
+        this.emailError = "Type a valid email address.";
       } else {
         this.$refs.email.style.outline = "2px solid #1267d5";
+        this.emailError = "";
       }
 
       // Password Validation
-      /* 
+      /*
       - at least 8 characters
       - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
       - Can contain special characters
@@ -80,8 +94,10 @@ export default {
       let passwordValidation = passwordPattern.test(this.password);
       if (!passwordValidation) {
         this.$refs.password.style.outline = "2px solid crimson";
+        this.passwordError = "Password must be at least 4 characters, 1 uppercase letter, 1 lowercase letter, and 1 number.";
       } else {
         this.$refs.password.style.outline = "2px solid #1267d5";
+        this.passwordError = "";
       }
 
       if (!this.terms) {
@@ -99,8 +115,6 @@ export default {
         this.email = "";
         this.password = "";
         this.terms = false;
-      } else {
-        alert("Password must be at least 4 characters, 1 uppercase letter, 1 lowercase letter, and 1 number");
       }
     },
   },
@@ -146,7 +160,7 @@ export default {
   border: none;
   padding: 10px;
   border-radius: 5px;
-  margin: 2rem auto;
+  margin: 1rem auto;
   width: 300px;
   color: #131515;
   display: block;

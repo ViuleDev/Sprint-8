@@ -10,7 +10,9 @@
       <div class="form-container">
         <form class="form" @submit.prevent="validateInputs">
           <input type="text" placeholder="Email Address" v-model="email" ref="email" />
+          <p class="error">{{ emailError }}</p>
           <input type="password" placeholder="Password" v-model="password" ref="password" />
+          <p class="error">{{ passwordError }}</p>
           <button>Continue</button>
         </form>
       </div>
@@ -25,7 +27,9 @@ export default {
   data() {
     return {
       email: "",
+      emailError: "",
       password: "",
+      passwordError: "",
     };
   },
 
@@ -38,8 +42,10 @@ export default {
       let emailValidation = emailPattern.test(this.email);
       if (!emailValidation) {
         this.$refs.email.style.outline = "2px solid crimson";
+        this.emailError = "Type a valid email address.";
       } else {
         this.$refs.email.style.outline = "2px solid #1267d5";
+        this.emailError = "";
       }
 
       // Password Validation
@@ -52,8 +58,10 @@ export default {
       let passwordValidation = passwordPattern.test(this.password);
       if (!passwordValidation) {
         this.$refs.password.style.outline = "2px solid crimson";
+        this.passwordError = "Invalid password.";
       } else {
         this.$refs.password.style.outline = "2px solid #1267d5";
+        this.passwordError = "";
       }
 
       if (emailValidation && passwordValidation) {

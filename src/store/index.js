@@ -59,18 +59,18 @@ export default createStore({
     },
 
     // Create New User
-    addUser(state, payload) {
+    addUser(state, userData) {
       // Check to see if the user is already in our database
       if (state.registeredUsers.length === 0) {
-        state.registeredUsers.push(payload);
+        state.registeredUsers.push(userData);
         state.showSignupModal = false;
         console.log("User Registered succesfully");
       } else {
         // Create an array with only the emails from the registered users
-        // If the email passed with the payload is not present it means that we can create a new user
+        // If the email passed with the userData is not present it means that we can create a new user
         const emailOnly = state.registeredUsers.map((user) => user.email.toUpperCase());
-        if (!emailOnly.includes(payload.email.toUpperCase())) {
-          state.registeredUsers.push(payload);
+        if (!emailOnly.includes(userData.email.toUpperCase())) {
+          state.registeredUsers.push(userData);
           state.showSignupModal = false;
           console.log("User Registered succesfully");
         } else {
@@ -82,13 +82,13 @@ export default createStore({
     },
 
     // Check for Existing User by matching Email & Password
-    logIn(state, payload) {
+    logIn(state, userData) {
       let isLoggedIn = false;
 
       // We only do this check if there are already registered users.
       if (state.registeredUsers.length) {
         state.registeredUsers.some((user) => {
-          if (user.email === payload.email && user.password === payload.password) {
+          if (user.email === userData.email && user.password === userData.password) {
             return (isLoggedIn = true);
           } else {
             isLoggedIn = false;
@@ -96,8 +96,8 @@ export default createStore({
         });
 
         if (isLoggedIn) {
-          console.log("payload email is", payload.email);
-          state.currentUser = payload.email;
+          console.log("userData email is", userData.email);
+          state.currentUser = userData.email;
           state.loggedIn = true;
           state.showLoginModal = false;
           console.log("Succesfully logged in!");
