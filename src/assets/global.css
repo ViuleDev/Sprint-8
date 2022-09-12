@@ -19,6 +19,8 @@ body {
   font-size: 0.8rem;
 }
 
+
+
 @media (max-width: 768px) {
   .hero-header h1 {
     font-size: 2rem;
@@ -36,5 +38,18 @@ body {
   .fake-div,
   .login-links {
     margin: 0 0 20px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-container,
+  .form button,
+  .form input[type="text"],
+  .form input[type="password"] {
+    width: 225px;
+  }
+
+  .modal {
+    width: 300px;
   }
 }

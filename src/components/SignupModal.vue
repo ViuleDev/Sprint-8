@@ -26,6 +26,10 @@
           <button>Create Account</button>
         </form>
       </div>
+
+      <div class="close-modal" @click="toggleSignupModal">
+        <fa class="fa-icon" :icon="['fa', 'fa-xmark']" />
+      </div>
     </div>
   </div>
 </template>
@@ -109,7 +113,7 @@ export default {
       // If all the Inputs are valid we create the user by calling the mutation in the Vuex store.
 
       if (nameValidation && lNameValidation && emailValidation && passwordValidation && this.terms) {
-        this.addUser({ firstName: this.fName, lastName: this.lName, email: this.email, password: this.password });
+        this.addUser({ firstName: this.fName, lastName: this.lName, email: this.email.toLowerCase(), password: this.password });
         this.fName = "";
         this.lName = "";
         this.email = "";
@@ -134,9 +138,10 @@ export default {
 }
 
 .modal {
-  min-width: 500px;
+  width: 500px;
   background: #131515;
   padding: 2rem;
+  position: relative;
 }
 
 .modal h2 {
@@ -179,7 +184,7 @@ export default {
 }
 
 .form button {
-  margin: 1rem auto;
+  margin: 2rem auto;
   width: 300px;
   display: block;
   border: none;
@@ -190,6 +195,17 @@ export default {
   border-radius: 2px;
   padding: 0.5rem 0.8rem;
   cursor: pointer;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.close-modal .fa-icon {
+  font-size: 1.5rem;
 }
 
 .terms label {

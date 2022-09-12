@@ -16,6 +16,10 @@
           <button>Continue</button>
         </form>
       </div>
+
+      <div class="close-modal" @click="toggleLoginModal">
+        <fa class="fa-icon" :icon="['fa', 'fa-xmark']" />
+      </div>
     </div>
   </div>
 </template>
@@ -65,7 +69,7 @@ export default {
       }
 
       if (emailValidation && passwordValidation) {
-        this.logIn({ email: this.email, password: this.password });
+        this.logIn({ email: this.email.toLowerCase(), password: this.password });
       }
     },
   },
