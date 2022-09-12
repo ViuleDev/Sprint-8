@@ -25,6 +25,8 @@
 
           <button>Create Account</button>
         </form>
+
+        <a href="#" @click="toggleModals">Do you already have an account? Log in!</a>
       </div>
 
       <div class="close-modal" @click="toggleSignupModal">
@@ -53,7 +55,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["toggleSignupModal", "addUser"]),
+    ...mapMutations(["toggleSignupModal", "addUser", "toggleLoginModal"]),
+
+    toggleModals() {
+      this.toggleSignupModal();
+      this.toggleLoginModal();
+    },
 
     validateForm() {
       // Name Validation

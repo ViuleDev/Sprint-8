@@ -15,6 +15,8 @@
           <p class="error">{{ passwordError }}</p>
           <button>Continue</button>
         </form>
+
+        <a href="#" @click="toggleModals">No account yet? Signup here!</a>
       </div>
 
       <div class="close-modal" @click="toggleLoginModal">
@@ -38,7 +40,11 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["toggleLoginModal", "logIn"]),
+    ...mapMutations(["toggleLoginModal", "logIn", "toggleSignupModal"]),
+    toggleModals() {
+      this.toggleSignupModal();
+      this.toggleLoginModal();
+    },
 
     validateInputs() {
       // Email Validation
