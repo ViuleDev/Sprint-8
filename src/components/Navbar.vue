@@ -24,8 +24,8 @@
   <nav>
     <div class="links">
       <router-link :to="{ name: 'home' }">Home</router-link>
-      <div class="line"></div>
       <router-link :to="{ name: 'starships' }">Starships</router-link>
+      <router-link :to="{ name: 'characters' }">Characters</router-link>
     </div>
   </nav>
   <div v-if="showSignupModal">
@@ -78,12 +78,6 @@ nav {
 nav .links {
   display: flex;
   justify-content: center;
-}
-
-nav .line {
-  height: 100%;
-  width: 10px;
-  background: #1267d5;
 }
 
 nav a {

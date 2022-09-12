@@ -9,6 +9,14 @@
           <li><span class="text-red">Weight: </span>{{ pilot.mass }}kg</li>
           <li><span class="text-red">Hair color: </span>{{ pilot.hair_color }}</li>
           <li><span class="text-red">Birth Year: </span>{{ pilot.birth_year }}</li>
+          <li>
+            <span class="text-red">Movies: </span>
+            <Movies :moviesArray="pilot.films" />
+          </li>
+          <li>
+            <span class="text-red">Starships: </span>
+            <Starships :starshipsArray="pilot.starships" />
+          </li>
         </ul>
       </div>
     </div>
@@ -16,7 +24,11 @@
 </template>
 
 <script>
+import Movies from "@/components/Movies.vue";
+import Starships from "@/components/Starships.vue";
+
 export default {
+  components: { Movies, Starships },
   props: ["pilotsArray"],
   data() {
     return {
@@ -30,10 +42,10 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           this.pilotsData.push(data);
+          console.log(this.pilotsData);
         });
     });
   },
-
 };
 </script>
 

@@ -11,11 +11,12 @@ export default {
   components: { Navbar },
 
   methods: {
-    ...mapActions(["fetchShips"]),
+    ...mapActions(["fetchShips", "fetchCharacters"]),
   },
   // We call the action to populate the ship list
   created() {
     this.fetchShips();
+    this.fetchCharacters();
   },
 };
 </script>

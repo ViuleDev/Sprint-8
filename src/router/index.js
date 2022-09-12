@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import StarshipsView from "../views/StarshipsView.vue";
 import StarshipCardView from "../views/StarshipCardView.vue";
+import CharactersView from "../views/CharactersView.vue";
 import store from "@/store";
 
 const routes = [
@@ -14,6 +15,19 @@ const routes = [
     path: "/starships",
     name: "starships",
     component: StarshipsView,
+    // beforeEnter: (to, from, next) => {
+    //   if (store.state.loggedIn === false) {
+    //     next(false);
+    //     store.commit("toggleLoginModal");
+    //   } else {
+    //     next();
+    //   }
+    // },
+  },
+  {
+    path: "/characters",
+    name: "characters",
+    component: CharactersView,
     // beforeEnter: (to, from, next) => {
     //   if (store.state.loggedIn === false) {
     //     next(false);

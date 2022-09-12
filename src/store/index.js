@@ -3,16 +3,23 @@ import axios from "axios";
 import router from "../router/index";
 
 const starshipsURL = "https://swapi.dev/api/starships/?page=";
+const charactersURL = "https://swapi.dev/api/people/?page=";
 
 export default createStore({
   state: {
     starShipsList: [],
-    pageList: 1,
+    starshipsPage: 1,
+
+    charactersList: [],
+    charactersPage: 1,
+
     showSignupModal: false,
     showLoginModal: false,
+
     registeredUsers: [],
     loggedIn: false,
     currentUser: "",
+
     starship: null,
     pilotsArray: null,
   },
@@ -34,6 +41,20 @@ export default createStore({
       // console.log(state.starShipsList.length);
     },
 
+    // Populate charactersList for the first time
+    fetchCharacters(state, charData) {
+      state.charactersList = charData;
+    },
+
+    // Add more characters
+    fetchMoreCharacters(state, moreCharacters) {
+      if (state.charactersList.length < moreCharacters.count) {
+        state.charactersList = state.charactersList.concat(moreCharacters.results);
+      }
+      console.log(state.charactersList);
+      // console.log(state.starShipsList.length);
+    },
+
     // Toggle Signup Modal
     toggleSignupModal(state) {
       state.showSignupModal = !state.showSignupModal;
@@ -47,9 +68,14 @@ export default createStore({
       state.starship = starshipData;
     },
 
-    turnPage(state) {
-      if (state.pageList < 5) {
-        state.pageList++;
+    turnStarshipPage(state) {
+      if (state.starshipsPage < 5) {
+        state.starshipsPage++;
+      }
+    },
+    turnCharactersPage(state) {
+      if (state.charactersPage < 10) {
+        state.charactersPage++;
       }
     },
 
@@ -127,24 +153,20 @@ export default createStore({
   actions: {
     // Api call using the created() life cycle hook in App.vue
     async fetchShips({ commit }) {
-      try {
-        const response = await axios.get(starshipsURL + 1);
-        const data = await response.data.results;
-        console.log({ data });
+      const response = await axios.get(starshipsURL + 1);
+      const data = await response.data.results;
+      console.log({ data });
 
-        // Sending the data to the mutations with a commit
-        commit("fetchShips", data);
-      } catch (error) {
-        console.log(error);
-      }
+      // Sending the data to the mutations with a commit
+      commit("fetchShips", data);
     },
 
     async fetchMoreShips({ commit }) {
-      commit("turnPage");
-      if (this.state.pageList > 4) {
+      commit("turnStarshipPage");
+      if (this.state.starshipsPage > 4) {
         return;
       } else {
-        const response = await axios.get(starshipsURL + this.state.pageList);
+        const response = await axios.get(starshipsURL + this.state.starshipsPage);
         const data = await response.data;
 
         // Sending the data to the mutations with a commit
@@ -161,6 +183,28 @@ export default createStore({
         commit("setPilots", starshipData.pilots);
       } catch (error) {
         console.log(error);
+      }
+    },
+
+    async fetchCharacters({ commit }) {
+      const response = await axios.get(charactersURL + 1);
+      const data = await response.data.results;
+      console.log({ data });
+
+      // Sending the data to the mutations with a commit
+      commit("fetchCharacters", data);
+    },
+
+    async fetchMoreCharacters({ commit }) {
+      commit("turnCharactersPage");
+      if (this.state.charactersPage > 9) {
+        return;
+      } else {
+        const response = await axios.get(charactersURL + this.state.charactersPage);
+        const data = await response.data;
+
+        // Sending the data to the mutations with a commit
+        commit("fetchMoreCharacters", data);
       }
     },
   },
