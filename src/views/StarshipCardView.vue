@@ -28,7 +28,7 @@
 import Footer from "@/components/Footer.vue";
 import Pilots from "@/components/Pilots.vue";
 
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   components: { Footer, Pilots },
@@ -39,11 +39,16 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["clearPilots"]),
     ...mapActions(["fetchStarshipData"]),
   },
 
   mounted() {
     this.fetchStarshipData(this.id);
+  },
+
+  unmounted() {
+    this.clearPilots();
   },
 };
 </script>

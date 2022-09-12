@@ -54,8 +54,11 @@ export default createStore({
     },
 
     setPilots(state, pilotsData) {
-      // state.pilotsArray = [];
       state.pilotsArray = pilotsData;
+    },
+
+    clearPilots(state) {
+      state.pilotsArray = [];
     },
 
     // Create New User
@@ -153,10 +156,9 @@ export default createStore({
       try {
         const response = await axios.get(URL);
         const starshipData = await response.data;
-        const pilotsData = await response.data.pilots;
 
         commit("fetchStarship", starshipData);
-        commit("setPilots", pilotsData);
+        commit("setPilots", starshipData.pilots);
       } catch (error) {
         console.log(error);
       }

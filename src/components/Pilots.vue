@@ -25,13 +25,15 @@ export default {
   },
 
   mounted() {
-    this.pilotsData = [];
     this.pilotsArray.forEach((pilotURL) => {
       fetch(pilotURL)
         .then((res) => res.json())
-        .then((data) => this.pilotsData.push(data));
+        .then((data) => {
+          this.pilotsData.push(data);
+        });
     });
   },
+
 };
 </script>
 
