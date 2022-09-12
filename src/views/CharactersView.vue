@@ -3,8 +3,14 @@
   <div class="starships" v-if="charactersList.length">
     <div class="starships-card" v-for="person in charactersList" :key="person">
       <h3>{{ person.name }}</h3>
-      <p>{{ person.films }}</p>
-      <p>{{ person.starships }}</p>
+      <p>
+        <span class="text-red">Movies: </span>
+        <Movies :moviesArray="person.films" />
+      </p>
+      <p>
+        <span class="text-red">Starships: </span>
+        <Starships :starshipsArray="person.starships" />
+      </p>
     </div>
   </div>
   <div v-else>
@@ -16,11 +22,13 @@
 
 <script>
 import Hero from "@/components/Hero.vue";
+import Movies from "@/components/Movies.vue";
+import Starships from "@/components/Starships.vue";
 import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
 
 export default {
-  components: { Hero, Footer },
+  components: { Hero, Movies, Starships, Footer },
   methods: {
     ...mapActions(["fetchMoreCharacters"]),
 
