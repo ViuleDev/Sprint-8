@@ -14,7 +14,7 @@ export default {
     ...mapActions(["fetchShips", "fetchCharacters"]),
   },
   // We call the action to populate the ship list
-  created() {
+  mounted() {
     this.fetchShips();
     this.fetchCharacters();
   },

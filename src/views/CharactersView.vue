@@ -17,7 +17,7 @@
     <h2>Loading characters, thanks for your patience!</h2>
   </div>
 
-  <Footer v-if="charactersList.length === 82" />
+  <!-- <Footer v-if="charactersList.length === 82" /> -->
 </template>
 
 <script>

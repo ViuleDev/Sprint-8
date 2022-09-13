@@ -12,7 +12,3 @@ red shade: #844250
 
 yellow: #ffeb00
 
-// Stuff to fix
-
-1. Responsivness
-2. Add link to open Login Modal from Signup Modal

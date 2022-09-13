@@ -26,7 +26,7 @@ export default {};
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/gamebg.jpg") center/cover;
   margin: 0 auto;
   max-width: 800px;
-  min-height: 800px;
+  height: 800px;
 }
 
 .game-cover h1 {
