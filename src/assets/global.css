@@ -46,6 +46,10 @@ body {
 }
 
 @media (max-width: 400px) {
+  .login-links a {
+    display: block;
+  }
+
   .form-container,
   .form button,
   .form input[type="text"],

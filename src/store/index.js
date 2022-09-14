@@ -37,8 +37,6 @@ export default createStore({
       if (state.starShipsList.length < moreShips.count) {
         state.starShipsList = state.starShipsList.concat(moreShips.results);
       }
-      console.log(state.starShipsList);
-      // console.log(state.starShipsList.length);
     },
 
     // Populate charactersList for the first time
@@ -51,8 +49,6 @@ export default createStore({
       if (state.charactersList.length < moreCharacters.count) {
         state.charactersList = state.charactersList.concat(moreCharacters.results);
       }
-      console.log(state.charactersList);
-      // console.log(state.starShipsList.length);
     },
 
     // Toggle Signup Modal
@@ -93,7 +89,7 @@ export default createStore({
       if (state.registeredUsers.length === 0) {
         state.registeredUsers.push(userData);
         state.showSignupModal = false;
-        console.log("User Registered succesfully");
+        alert("User Registered succesfully");
       } else {
         // Create an array with only the emails from the registered users
         // If the email passed with the userData is not present it means that we can create a new user
@@ -101,9 +97,9 @@ export default createStore({
         if (!emailOnly.includes(userData.email.toUpperCase())) {
           state.registeredUsers.push(userData);
           state.showSignupModal = false;
-          console.log("User Registered succesfully");
+          alert("User Registered succesfully");
         } else {
-          console.log("User already registered");
+          alert("User already registered");
         }
       }
 
@@ -129,10 +125,10 @@ export default createStore({
           state.currentUser = userData.email;
           state.loggedIn = true;
           state.showLoginModal = false;
-          console.log("Succesfully logged in!");
+          alert("Succesfully logged in!");
         } else {
           state.loggedIn = false;
-          console.log("Invalid username or password!");
+          alert("Invalid username or password!");
         }
       } else {
         state.loggedIn = false;
@@ -147,7 +143,7 @@ export default createStore({
       // Redirects to the Home page when we log out
       router.push({ name: "home" });
 
-      console.log("Logged out!");
+      alert("Logged out!");
     },
   },
   actions: {
@@ -155,7 +151,7 @@ export default createStore({
     async fetchShips({ commit }) {
       const response = await axios.get(starshipsURL + 1);
       const data = await response.data.results;
-      console.log({ data });
+      // console.log({ data });
 
       // Sending the data to the mutations with a commit
       commit("fetchShips", data);
@@ -175,21 +171,16 @@ export default createStore({
     },
 
     async fetchStarshipData({ commit }, URL) {
-      try {
-        const response = await axios.get(URL);
-        const starshipData = await response.data;
+      const response = await axios.get(URL);
+      const starshipData = await response.data;
 
-        commit("fetchStarship", starshipData);
-        commit("setPilots", starshipData.pilots);
-      } catch (error) {
-        console.log(error);
-      }
+      commit("fetchStarship", starshipData);
+      commit("setPilots", starshipData.pilots);
     },
 
     async fetchCharacters({ commit }) {
       const response = await axios.get(charactersURL + 1);
       const data = await response.data.results;
-      console.log({ data });
 
       // Sending the data to the mutations with a commit
       commit("fetchCharacters", data);
